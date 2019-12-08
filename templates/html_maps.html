@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+    }
+  </script>
+
+  <script type="text/javascript"
+    src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <title>Farm MD</title>
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <style>
+    /* Set the size of the div element that contains the map */
+    #map {
+      height: 600px;
+      /* The height is 400 pixels */
+      width: 80%;
+      margin: 20px auto 50px auto;
+      /* The width is the width of the web page */
+
+    }
+
+    .navbar {
+      background-image: url("http://www.hdnicewallpapers.com/Walls/Big/Summer/Beautiful_Greeny_Summer_Look_Farm.jpg");
+      color: #030303;
+      font-family: 'Montserrat', sans-serif;
+      padding: 20px 0px 20px 0px;
+    }
+
+    .navbar h1 {
+      margin-left: 40px;
+    }
+
+    .navbar h2 {
+      margin-right: 40px;
+    }
+
+    a {
+      color: #070707;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: rgb(189, 172, 172);
+      text-decoration: none;
+    }
+
+    #root {
+      /* background-image: url("http://www.hdnicewallpapers.com/Walls/Big/Summer/Beautiful_Greeny_Summer_Look_Farm.jpg"); */
+      height: 1100px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .container {
+      margin: 20px auto 20px auto;
+      text-align: center;
+      width: 95%;
+    }
+
+    .up h4 {
+      margin-bottom: 50px;
+    }
+
+    .up {
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
+      margin: 20px auto 20px auto;
+      padding-bottom: 20px;
+    }
+
+    .card-title {
+      background-color: #71c4a9;
+      color: white;
+      padding: 5px 10px 5px 10px;
+      width: 50%;
+      margin: 10px auto 10px auto;
+      border-radius: 10px;
+    }
+
+    .up img {
+      margin: 10px auto 10px auto;
+      width: 300px;
+    }
+
+    .up img:hover {
+      position: absolute;
+      left: 50px;
+      width: 500px;
+      z-index: 1;
+      border: 6px solid black;
+      cursor: pointer
+    }
+  </style>
+</head>
+
+<body>
+  <div id="google_translate_element"></div>
+  <div id="root">
+    <nav class="navbar navbar-dark bg-primary">
+      <a href="http://localhost:3000/dashboard">
+        <h1><i class="fab fa-pagelines"></i> Farm MD</h1>
+      </a>
+      <h2><i class="fas fa-smile-beam"></i> Taking Care of Your Crops</h2>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="up cd col-sm" style="width: 50%;">
+          <!-- <h3 class="card-title">Weather :</h3>
+          <h4>Moderate weather expected coming week</h4>
+          <h3 class="card-title">Diseases Nearby :</h3>
+          <h4>Bacterial Plight among lemon leaves</h4>
+          <h3 class="card-title">Suggestion for prevention :</h3>
+          <h4>Remove infected plants and ensure proper spacing between new plants</h4> -->
+          <img src={{ url_1 }} alt="Chart">
+        </div>
+        <div class="up cd col-sm" style="width: 50%;">
+          <img src={{ url_2 }} alt="Chart">
+        </div>
+        <div class="up cd col-sm" style="width: 50%;">
+          <img src={{ url_3 }} alt="Chart">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <a href="http://localhost:3000/report" class="btn btn-primary"
+            style="font-size: 2rem; border-radius: 10px;"><i class="fas fa-chart-bar"></i> Click here to get Details</a>
+          <h3 style="background-color: #1f6650; color: white;
+           padding: 5px 10px 5px 10px; width: 40%; margin:40px auto 5px auto">Diseases in the vicinity : </h3>
+          <div id="map"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script>
+    // Initialize and add the map
+    var citymap = {
+      mathikere: {
+        center: { lat: 13.0334, lng: 77.5640 },
+        population: 1000
+      },
+      kadugodi: {
+        center: { lat: 12.9908, lng: 77.7608 },
+        population: 1000
+      },
+      indiranagar: {
+        center: { lat: 12.9784, lng: 77.6408 },
+        population: 1000
+      },
+    };
+    /*var citymap = {
+      chicago: {
+        center: {lat: 41.878, lng: -87.629},
+        population: 2714856
+      },
+      newyork: {
+        center: {lat: 40.714, lng: -74.005},
+        population: 8405837
+      },
+      losangeles: {
+        center: {lat: 34.052, lng: -118.243},
+        population: 3857799
+      },
+      vancouver: {
+        center: {lat: 49.25, lng: -123.1},
+        population: 603502
+      }
+    };*/
+    function initMap() {
+      // The location of Uluru
+      var uluru = { lat: 12.971599, lng: 77.594566 };
+      var uluru2 = { lat: 13.0334, lng: 77.5640 };
+      var uluru3 = { lat: 12.9784, lng: 77.6408 };
+      var uluru4 = { lat: 12.9908, lng: 77.7608 };
+      // The map, centered at Uluru
+      var map = new google.maps.Map(
+        document.getElementById('map'), { zoom: 12, center: uluru });
+      // The marker, positioned at Uluru
+      var marker1 = new google.maps.Marker({ position: uluru, map: map });
+      var marker2 = new google.maps.Marker({
+        position: uluru2, map: map, label: {
+          text: "Lepidopteran pests here",
+          color: "black",
+          fontSize: "16px",
+          fontWeight: "bold"
+        }
+      });
+      var marker3 = new google.maps.Marker({
+        position: uluru3, map: map, label: {
+          text: "Hemipteran pests here",
+          color: "black",
+          fontSize: "16px",
+          fontWeight: "bold"
+        }
+      });
+      var marker4 = new google.maps.Marker({
+        position: uluru4, map: map, label: {
+          text: "locusts and crickets infested",
+          color: "black",
+          fontSize: "16px",
+          fontWeight: "bold"
+        }
+      });
+      for (var city in citymap) {
+        // Add the circle for this city to the map.
+        var cityCircle = new google.maps.Circle({
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35,
+          map: map,
+          center: citymap[city].center,
+          radius: Math.sqrt(citymap[city].population) * 100
+        });
+      }
+    }
+
+  </script>
+  <!--Load the API from the specified URL
+    * The async attribute allows the browser to render the page while the API loads
+    * The key parameter will contain your own API key (which is not needed for this tutorial)
+    * The callback parameter executes the initMap() function
+    -->
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEphx8dTijVXd76E9WPBTXXbS4EpoUHgE&callback=initMap">
+    </script>
+</body>
+
+</html>
