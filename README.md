@@ -1,2 +1,2 @@
-# necdedsec
-Farm MD for NEC food hackathon
+# farmmd
+Helper to farmers
